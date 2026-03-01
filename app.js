@@ -1,12 +1,10 @@
 const express = require('express');
 const app = express();
-const port = 3000;
 
-//Route de base
-app.get('/',(req,res)=>{
-    res.send('Hello world')
-});
+// Importation des routes
+const indexRoutes = require('./routes/index.routes');
 
-app.listen(port,()=>{
-    console.log(`Le serveur écoute sur le port ${port}`)
-});
+app.use('/',indexRoutes);
+
+
+module.exports = app;
