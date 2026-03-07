@@ -3,8 +3,9 @@
   "version": "1.0.0",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start":"nodemon server.js"
+     "start": "env-cmd -f ./env/.env nodemon server.js",
+     "prod": "env-cmd -f ./env/.env.prod nodemon server.js",
+     "dev": "env-cmd -f ./env/.env.dev nodemon server.js"
   },
   "keywords": [],
   "author": "",
@@ -12,6 +13,7 @@
   "description": "",
   "dependencies": {
     "ejs": "^4.0.1",
+    "env-cmd": "^11.0.0",
     "express": "^5.2.1",
     "jsdoc": "^4.0.5",
     "mongoose": "^9.2.3",
