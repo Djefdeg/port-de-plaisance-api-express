@@ -14,7 +14,7 @@ exports.getAllCatways = async (req, res)=>{
 exports.getCatwayById = async (req, res)=>{
    const id=req.params.id;
    try {
-        let catway = await Catway.findById(id);
+        const catway = await Catway.findById(id);
         if (!catway) {
             return res.status(404).json('catway_not_found');
         }
@@ -72,7 +72,7 @@ exports.deleteCatway = async (req, res)=>{
         if (!deletedCatway){
           return res.status(404).json('catway_not_found');
         } 
-        return res.status(204).json('catway deleted');
+        return res.status(200).json('catway deleted');
    }catch (error){
         return res.status(500).json(error);
    }
