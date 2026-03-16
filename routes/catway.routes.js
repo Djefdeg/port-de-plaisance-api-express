@@ -7,16 +7,16 @@ const catwayController = require ('../controllers/catway.Controller');
 router.get('/',catwayController.getAllCatways);
 
 //Appel de la fonction du controller qui affiche un catway donné
-router.get('/:id',catwayController.getCatwayById);
+router.get('/:catwayNumber',catwayController.getGivenCatway);
 
 //Appel de la fonction du controller qui ajoute un catway
 router.post('/',catwayController.createCatway);
 
 //Appel de la fonction du controller qui modifie un catway donné
-router.put('/:id',catwayController.updateCatway);
+router.put('/:catwayNumber',catwayController.updateGivenCatway);
 
 //Appel de la fonction du controller qui suprime un catway donné
-router.get('/:id',catwayController.deleteCatway);
+router.delete('/:catwayNumber',catwayController.deleteGivenCatway);
 
 
 module.exports = router;

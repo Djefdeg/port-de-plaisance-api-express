@@ -6,17 +6,18 @@ exports.getAllCatways = async (req, res)=>{
         const catways = await Catway.find();
         return res.status(200).json(catways);
    }catch (error){
-        return res.status(500).json(error);
+        console.error(error);
+        return res.status(500).json({ message: 'internal_server_error' });
    }
 };
 
 //Afficher un catway déterminé
-exports.getCatwayById = async (req, res)=>{
-   const id=req.params.id;
+exports.getGivenCatway = async (req, res)=>{
+   const catwayNumber=Number(req.params.catwayNumber);
    try {
-        const catway = await Catway.findById(id);
+        const catway = await Catway.findOne({catwayNumber:catwayNumber});
         if (!catway) {
-            return res.status(404).json('catway_not_found');
+            return res.status(404).json({message:'catway_n0t_found'});
         }
         return res.status(200).json(catway);
    }catch (error){
@@ -32,48 +33,58 @@ exports.createCatway = async (req, res)=>{
      catwayState:req.body.catwayState
    };
    try {
+        if (!req.body.catwayNumber || !req.body.catwayType || !req.body.catwayState) {
+          return res.status(400).json({ message: 'Missing required fields' });
+          }  
+          console.log(req.body);
         let newCatway = await Catway.create(catwayBuffer);
-        return res.status(201).json(newCatway);
+          return res.status(201).json(newCatway);
    }catch (error){
-        return res.status(500).json(error);
+        console.error(error);
+        return res.status(500).json({ message: 'internal_server_error' });
    }
 };
 
 //Modifier les champs d'un catway donné
-exports.updateCatway = async (req, res)=>{
-   const id=req.params.id;
+exports.updateGivenCatway = async (req, res)=>{
+   const catwayNumber=Number(req.params.catwayNumber);
    let catwayBuffer = {
      catwayNumber:req.body.catwayNumber,
      catwayType:req.body.catwayType,
      catwayState:req.body.catwayState
    };
    try {
-        let modifiedCatway = await Catway.findByIdAndUpdate(
-          id,
+          if (!req.body.catwayNumber || !req.body.catwayType || !req.body.catwayState) {
+           return res.status(400).json({ message: 'Missing required fields' });
+          }
+        let modifiedCatway = await Catway.findOneAndUpdate(
+          {catwayNumber:catwayNumber},
           catwayBuffer,
           {new:true}
         );
         if (!modifiedCatway){
-          return res.status(404).json('catway_not_found');
+          return res.status(404).json({message:'catway_not_found'});
         } 
-        return res.status(201).json(modifiedCatway);
+        return res.status(200).json(modifiedCatway);
    }catch (error){
-        return res.status(500).json(error);
+        console.error(error);
+        return res.status(500).json({ message: 'internal_server_error' });
    }
 };
 
 //Supprimer un catway donné
-exports.deleteCatway = async (req, res)=>{
-   const id=req.params.id;
+exports.deleteGivenCatway = async (req, res)=>{
+   const catwayNumber=Number(req.params.catwayNumber);
    
    try {
-        let deletedCatway = await Catway.findByIdAndDelete(id);
+        let deletedCatway = await Catway.findOneAndDelete({catwayNumber:catwayNumber});
 
         if (!deletedCatway){
-          return res.status(404).json('catway_not_found');
+          return res.status(404).json({message:'catway_not_found'});
         } 
-        return res.status(200).json('catway deleted');
+        return res.status(200).json({ message: 'catway_deleted' });
    }catch (error){
-        return res.status(500).json(error);
+        console.error(error);
+        return res.status(500).json({ message: 'internal_server_error' });
    }
 };
