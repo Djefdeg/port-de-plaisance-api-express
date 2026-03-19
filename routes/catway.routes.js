@@ -13,7 +13,7 @@ router.get('/:catwayNumber',catwayController.getGivenCatway);
 router.post('/',catwayController.createCatway);
 
 //Appel de la fonction du controller qui modifie un catway donné
-router.put('/:catwayNumber',catwayController.updateGivenCatway);
+router.patch('/:catwayNumber',catwayController.updateGivenCatway);
 
 //Appel de la fonction du controller qui suprime un catway donné
 router.delete('/:catwayNumber',catwayController.deleteGivenCatway);

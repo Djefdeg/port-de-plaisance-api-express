@@ -15,7 +15,7 @@ node app.js
 GET /catways  
 GET /catways/:catwayNumber  
 POST /catways  
-PUT /catways/:catwayNumber  
+PATCH /catways/:catwayNumber  
 DELETE /catways/:catwayNumber  
 
 GET /catways/reservations/all

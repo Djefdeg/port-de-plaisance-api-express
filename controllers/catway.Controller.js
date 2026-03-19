@@ -17,7 +17,7 @@ exports.getGivenCatway = async (req, res)=>{
    try {
         const catway = await Catway.findOne({catwayNumber:catwayNumber});
         if (!catway) {
-            return res.status(404).json({message:'catway_n0t_found'});
+            return res.status(404).json({message:'catway_not_found'});
         }
         return res.status(200).json(catway);
    }catch (error){
@@ -35,8 +35,7 @@ exports.createCatway = async (req, res)=>{
    try {
         if (!req.body.catwayNumber || !req.body.catwayType || !req.body.catwayState) {
           return res.status(400).json({ message: 'Missing required fields' });
-          }  
-          console.log(req.body);
+          }           
         let newCatway = await Catway.create(catwayBuffer);
           return res.status(201).json(newCatway);
    }catch (error){
@@ -48,19 +47,15 @@ exports.createCatway = async (req, res)=>{
 //Modifier les champs d'un catway donné
 exports.updateGivenCatway = async (req, res)=>{
    const catwayNumber=Number(req.params.catwayNumber);
-   let catwayBuffer = {
-     catwayNumber:req.body.catwayNumber,
-     catwayType:req.body.catwayType,
-     catwayState:req.body.catwayState
-   };
+   
    try {
-          if (!req.body.catwayNumber || !req.body.catwayType || !req.body.catwayState) {
-           return res.status(400).json({ message: 'Missing required fields' });
+          if (!req.body.catwayState) {
+           return res.status(400).json({ message: 'catwayState is required' });
           }
-        let modifiedCatway = await Catway.findOneAndUpdate(
+        const modifiedCatway = await Catway.findOneAndUpdate(
           {catwayNumber:catwayNumber},
-          catwayBuffer,
-          {new:true}
+          { catwayState: req.body.catwayState },
+          {new:true, runValidators: true}
         );
         if (!modifiedCatway){
           return res.status(404).json({message:'catway_not_found'});

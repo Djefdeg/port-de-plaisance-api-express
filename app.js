@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const indexRoutes = require('./routes/index.routes');
 const catwayRoutes = require('./routes/catway.routes');
 const reservationRoutes = require('./routes/reservation.routes');
+const userRoutes = require('./routes/user.routes');
 
 const app = express();
 
@@ -17,6 +18,7 @@ app.use(express.json());
 app.use('/', indexRoutes);
 app.use('/catways', catwayRoutes);
 app.use('/catways', reservationRoutes);
+app.use('/users',userRoutes)
 
 module.exports = app;
 

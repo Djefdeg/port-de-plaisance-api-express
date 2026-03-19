@@ -99,7 +99,7 @@ exports.updateGivenReservation = async (req, res)=>{
           let modifiedReservation = await Reservation.findByIdAndUpdate(
                reservationId,
                reservationBuffer,
-               {new:true}
+               {new:true, runValidators: true}
                );
           return res.status (200).json(modifiedReservation);
      }catch(error){
