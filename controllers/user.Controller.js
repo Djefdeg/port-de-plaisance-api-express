@@ -1,5 +1,7 @@
-
 const User = require ('../models/user.model');
+const bcrypt = require ('bcrypt');
+const jwt = require ('jsonwebtoken');
+const blacklist = require('../middlewares/tokenBlacklist');
 
 //Afficher la liste des utilisateurs
 exports.getAllUsers = async (req,res) => {
@@ -29,7 +31,7 @@ exports.getGivenUser = async(req,res)=>{
 
 //Créer un nouvel utilisateur
 exports.createUser = async(req,res) => {
-    console.log(req.body);
+   
     let userBuffer ={
         userName:req.body.userName,
         email:req.body.email,
@@ -86,4 +88,60 @@ exports.deleteGivenUser = async (req,res)=>{
         console.error(error);
         return res.status(500).json({ message: 'internal_server_error' });
     }
+};
+
+//Authentification du nom d'utilisateur et mot de passe
+exports.login = async (req,res) => {
+    
+try {
+    const {email,password} = req.body;
+
+    if (!email || !password){
+        return res.status(400).json({message:'Missing_required_field'});
+    }
+
+    const user = await User.findOne({email:email});
+    if(!user){
+        return res.status(404).json({message:'user_not_found'});
+    }
+
+    //Vérifier le mot de passe
+    const isMatch = await bcrypt.compare (password, user.password);
+    if (!isMatch){
+        return res.status(401).json({message:'invalid-credentials'})
+    }
+
+    //Générer le token
+    const token = jwt.sign(
+        { userId: user._id },
+        process.env.JWT_SECRET_KEY || 'secretkey',
+        { expiresIn: '1h' }
+    );
+    return res.status(200).json({
+        message: 'login_succees',
+        token:token
+    });
+   
+}catch(error){
+    console.error(error);
+    return res.status(500).json({message:'internal_server_error'});
+}
+};
+
+//Déconnexion de l'utilisateur
+exports.logout = (req, res) => {
+    const authHeader = req.headers.authorization;
+
+    if (!authHeader) {
+        return res.status(400).json({ message: 'token_missing' });
+    }
+
+    const token = authHeader.split(' ')[1];
+
+    // 🔴 Ajouter à la blacklist
+    blacklist.add(token);
+
+    return res.status(200).json({
+        message: 'logout_success'
+    });
 };

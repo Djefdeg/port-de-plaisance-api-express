@@ -15,10 +15,10 @@ app.use(cors());
 app.use(express.json());
 
 // routes
-app.use('/', indexRoutes);
 app.use('/catways', catwayRoutes);
 app.use('/catways', reservationRoutes);
-app.use('/users',userRoutes)
+app.use('/users',userRoutes);
+app.use('/', indexRoutes);
 
 module.exports = app;
 
