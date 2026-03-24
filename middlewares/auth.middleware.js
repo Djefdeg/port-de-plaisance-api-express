@@ -22,7 +22,7 @@ module.exports = (req, res, next) => {
             return res.status(401).json({ message: 'token_revoked' });
         }
 
-        // Vérifier le token
+        // Vérifier si le token est valide (construit avec le la clé JWT-SECRET-KEY)
         const decoded = jwt.verify(
             token,
             process.env.JWT_SECRET_KEY || 'secretkey'

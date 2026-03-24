@@ -63,8 +63,23 @@ exports.createReservation = async(req,res)=>{
           if (!req.body.clientName || !req.body.boatName || !req.body.startDate || !req.body.endDate) {
                return res.status(400).json({ message: 'Missing required fields' });
           }  
+          if (isNaN(new Date(req.body.startDate)) || isNaN(new Date(req.body.endDate))) {
+               return res.status(400).json({ message: 'Invalid dates' });
+          }
           if (new Date(req.body.startDate) >= new Date(req.body.endDate)) {
                return res.status(400).json({ message: 'endDate must be after startDate' });
+          }
+          // Vérifier chevauchement
+          const overlappingReservation = await Reservation.findOne({
+               catwayNumber: catwayNumber,
+               startDate: { $lt: new Date(req.body.endDate) }, // $lt: less than
+               endDate: { $gt: new Date(req.body.startDate) }  // $gt: greater than
+               });
+
+          if (overlappingReservation) {
+               return res.status(400).json({
+               message: 'This catway is already reserved for the selected dates'
+               });
           }
           const newReservation = await Reservation.create(reservationBuffer);
           return res.status(201).json(newReservation);
@@ -86,15 +101,31 @@ exports.updateGivenReservation = async (req, res)=>{
      try {
           const catwayNumber=Number(req.params.catwayNumber);
           const reservationId = req.params.reservationId;
-           if (!req.body.clientName || !req.body.boatName || !req.body.startDate || !req.body.endDate) {
-                return res.status(400).json({ message: 'Missing required fields' });
+          if (!req.body.clientName || !req.body.boatName || !req.body.startDate || !req.body.endDate) {
+               return res.status(400).json({ message: 'Missing required fields' });
           }  
+          if (isNaN(new Date(req.body.startDate)) || isNaN(new Date(req.body.endDate))) {
+               return res.status(400).json({ message: 'Invalid dates' });
+          }
+          if (new Date(req.body.startDate) >= new Date(req.body.endDate)) {
+               return res.status(400).json({ message: 'endDate must be after startDate' });
+          }
           const reservation = await Reservation.findOne({catwayNumber:catwayNumber, _id:reservationId});
           if (!reservation){
                return res.status(404).json({message: 'reservation_not_found'});
           }
-          if (new Date(req.body.startDate) >= new Date(req.body.endDate)) {
-               return res.status(400).json({ message: 'endDate must be after startDate' });
+          // Vérifier chevauchement
+          const overlappingReservation = await Reservation.findOne({
+               catwayNumber: catwayNumber,
+               _id: { $ne: req.params.reservationId }, //eviter la reservation qu'on est entrain de modifier
+               startDate: { $lt: new Date(req.body.endDate) }, // $lt: less than
+               endDate: { $gt: new Date(req.body.startDate) }  // $gt: greater than
+               });
+
+          if (overlappingReservation) {
+               return res.status(400).json({
+               message: 'This catway is already reserved for the selected dates'
+               });
           }
           let modifiedReservation = await Reservation.findByIdAndUpdate(
                reservationId,
