@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+    <%- include('../partials/header') %>
+    <main>
+
+        <fieldset>
+            <legend>UTILISATEUR CONNECTÉ</legend>
+            <label for="name">Nom d'utilisateur:</label> <span id="name">Doe</span><br>
+            <label for="email">E-mail :</label> <span id="email">John@gmail.com</span><br>
+            <label for="date">Date :</label> <span id="date">30/03/2026</span>
+        </fieldset>
+
+        <h2>Réservations en cours</h2>
+        <p style="color: red;">
+            ⚠️ Le filtre sur les dates ne fonctionne pas encore, toutes les réservations sont affichées
+             provisoirement. Voir le controller getCurrentReservations.
+        </p>
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>Client</th>
+                    <th>Catway</th>
+                    <th>Début</th>
+                    <th>Fin</th>
+                </tr>
+            </thead>
+                <tbody id="reservations-body">
+            </tbody>
+        </table>
+    </main>
+    <script src="/js/dashboard.js"></script>
+</body>
+
+</html>

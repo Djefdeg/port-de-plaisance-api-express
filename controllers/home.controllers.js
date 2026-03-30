@@ -1,5 +1,8 @@
 //Controller de la page d'accueil
 
-exports.home = (req, res)=>{
-    res.send('Hello World')
-};
+// const { render } = require("ejs");
+
+// exports.home = (req, res)=>{
+//     res.send('Hello World')
+    
+// };

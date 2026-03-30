@@ -1,0 +1,65 @@
+form {
+  /* On centre le formulaire */
+  margin: 0 auto;
+  width: 400px;
+  /* Le contour du formulaire */
+  padding: 1em;
+  border: 1px solid #ccc;
+  border-radius: 1em;
+}
+ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+form li + li {
+  margin-top: 1em;
+}
+
+form label {
+  /* Taille et alignement uniformes */
+  display: inline-block;
+  width: 90px;
+  text-align: right;
+}
+
+.button {
+    text-align: center;
+}
+button{
+    width: 300px;
+}
+
+/* Style du header */
+/* Style de base pour le menu */
+nav ul {
+background-color:cadetblue;
+list-style-type: none;
+padding: 0;
+margin-bottom: 20px;
+overflow: hidden;
+}
+
+nav li {
+float: right;
+}
+
+nav li a {
+display: block;
+color: white;
+text-align: center;
+padding: 14px 16px;
+text-decoration: none;
+}
+
+/* Changement de couleur au survol */
+nav li a:hover {
+background-color:darkcyan;
+}
+
+/* Style du dachboard */
+/* Style fieldset */
+fieldset label, legend{
+  font-weight: bold;
+}
