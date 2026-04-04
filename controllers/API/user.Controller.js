@@ -1,7 +1,7 @@
-const User = require ('../models/user.model');
+const User = require ('../../models/user.model');
 const bcrypt = require ('bcrypt');
 const jwt = require ('jsonwebtoken');
-const blacklist = require('../middlewares/tokenBlacklist');
+const blacklist = require('../../middlewares/tokenBlacklist');
 
 //Afficher la liste des utilisateurs
 exports.getAllUsers = async (req,res) => {
@@ -119,7 +119,11 @@ try {
     );
     return res.status(200).json({
         message: 'login_succees',
-        token:token
+        token:token,
+        user: {
+                userName: user.userName, 
+                email: user.email 
+            }
     });
    
 }catch(error){

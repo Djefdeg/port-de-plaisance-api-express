@@ -1,5 +1,5 @@
-const Catway = require('../models/catway.model');
-const Reservation = require ('../models/reservation.model');
+const Catway = require('../../models/catway.model');
+const Reservation = require ('../../models/reservation.model');
 
 //Afficher la liste des réservations (tous catways confondus)) : GET /catways/all
 exports.getAllReservationsGlobal = async(req,res) =>{
@@ -10,6 +10,24 @@ exports.getAllReservationsGlobal = async(req,res) =>{
           console.error(error);
           return res.status(500).json({ message: 'internal_server_error' });
      }
+};
+
+//Afficher la liste des réservations en cours (tous catways confondus)) : GET /reservations/current
+//Ce controller ne fonctionne pas car son filtre de dates ne fonctionne pas
+exports.getCurrentReservations = async (req, res) => {
+    try {
+        const today = new Date();
+       //Le filtre réalisé ici ne fonctionne pas et pourtant aucune erreur n'est apparente
+        const reservations = await Reservation.find({
+            startDate: { $lte: today }, 
+            endDate: { $gte: today }
+        });
+
+        res.json(reservations);
+
+    } catch (err) {
+        res.status(500).json({ message: err.message });
+    }
 };
 
 //Afficher la liste des réservations avec catwayNumber donné : GET /catways/:catwayNumber/reservations

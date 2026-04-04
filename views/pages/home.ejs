@@ -7,15 +7,21 @@
     <link rel="stylesheet" href="/css/style.css">
 </head>
 <body>
-    <%- include('../partials/header') %>
-    <main>
-        <p>Une courte présentation de l'application</p>
+    <header>
+        <h1 class="presentation">API pour le port de plaisance Russel:</h1>
+        <p class="presentation"> Application interne de gestion de réservations de catways.
+            Conçu pour automatiser et optimiser la location d'emplacements dans les ports de plaisance. 
+            Elle permet aux plaisanciers de réserver en temps réel et aux capitaineries de gérer efficacement la 
+            disponibilité</p>
 
+    </header>
+    <main>
+        <p id="message"></p>
         <form id="loginForm" action="" method="">
             <ul>
                 <li>
                     <label for="name">Username:</label>
-                    <input type="text" id="name" name="name" />
+                    <input type="text" id="name" name="name" placeholder="Username"/>
                 </li>
                 <li>
                     <label for="email">E-mail:</label>
@@ -30,9 +36,12 @@
                 </li>
             </ul>
         </form>
-        <p id="message"></p>
-        <a href="/doc-app">Documentation de l'API</a>
+        
+        
     </main>
+    <footer>
+        <a class="docLink" href="/doc-app">Documentation de l'API</a>
+    </footer>
     <script src="/js/home.js"></script>
 </body>
 </html>

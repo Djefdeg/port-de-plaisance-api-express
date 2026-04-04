@@ -1,11 +1,43 @@
+
+
+.presentation {
+  width: 75%;
+  margin: auto;
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+#message {
+  color: red;
+  background-color: blanchedalmond;
+  width: 75%;
+  /* height: 20px; */
+  margin: auto;
+  text-align: center;
+}
+
+body {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+
+  flex: 1; /* Le contenu occupe tout l'espace restant */
+  background-image: url('../img/catway_img.jpeg');
+  background-repeat: no-repeat; /* Empêche la répétition */
+  background-position: center; /* Centre l'image */
+  background-size: cover; /* Couvre tout l'espace sans déformer */
+  background-attachment: fixed; /* L'image reste fixe au scroll (optionnel) */
+}
+
 form {
   /* On centre le formulaire */
-  margin: 0 auto;
+  margin: 100px auto;
   width: 400px;
   /* Le contour du formulaire */
   padding: 1em;
   border: 1px solid #ccc;
   border-radius: 1em;
+  background-color:lightsteelblue;
 }
 ul {
   list-style: none;
@@ -24,12 +56,32 @@ form label {
   text-align: right;
 }
 
+form input {
+  width: 220px;
+}
 .button {
     text-align: center;
 }
 button{
     width: 300px;
+    height: 30px;
 }
+
+footer{
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: lightgray;
+  height: 50px;
+  text-align: center;
+}
+
+.docLink {
+  display: flex;
+  align-items: center; /* Centrage vertical */
+  justify-content: center; /* Centrage horizontal (optionnel) */
+  height: 50px;  /* Exemple de hauteur */
+} 
 
 /* Style du header */
 /* Style de base pour le menu */
@@ -62,4 +114,34 @@ background-color:darkcyan;
 /* Style fieldset */
 fieldset label, legend{
   font-weight: bold;
+}
+/* Style du tableau */
+
+h2{
+  text-align: center;
+}
+.alert {
+  background-color:blanchedalmond;
+  width: 90%;
+  margin: auto;
+  margin-bottom: 30px;
+  border-radius: 1em;
+  padding : 10px;
+}
+table, th, td {
+  border: 1px solid;
+  border-collapse: collapse;
+}
+table {
+  width:90%;
+  margin: auto;
+}
+th {
+  background-color:lightgray;
+  width:25%;
+  padding: 10px;
+}
+td{
+  background-color:whitesmoke;
+  padding-left: 5px;
 }

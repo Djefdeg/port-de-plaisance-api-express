@@ -12,17 +12,20 @@
 
         <fieldset>
             <legend>UTILISATEUR CONNECTÉ</legend>
-            <label for="name">Nom d'utilisateur:</label> <span id="name">Doe</span><br>
-            <label for="email">E-mail :</label> <span id="email">John@gmail.com</span><br>
+            <label for="name">Nom d'utilisateur:</label> <span id="name">DOE</span><br>
+            <label for="email">E-mail :</label> <span id="email"></span><br>
             <label for="date">Date :</label> <span id="date">30/03/2026</span>
         </fieldset>
-
-        <h2>Réservations en cours</h2>
-        <p style="color: red;">
-            ⚠️ Le filtre sur les dates ne fonctionne pas encore, toutes les réservations sont affichées
-             provisoirement. Voir le controller getCurrentReservations.
+      
+        <h2>RÉSERVATIONS EN COURS</h2>
+        <p class="alert">
+            ⚠️ Le filtre sur les dates du controller getCurrentReservation ne fonctionne pas, je fais donc un filtrage
+             directement dans le frontend qui lui est fonctionnel. On charge toutes les réservations puis on filtre.
+             L'idéal est de filtrer directement dans le backend dans son controller mais cela ne fonctionne pas 
+             pour une raison non identifiée. Vu que le nombre de réservations est petit cela n'aura pas d'effet sur 
+             le temps d'exécution du code. Procédure moins optimisée mais fonctionnelle.
         </p>
-        <table border="1">
+        <table>
             <thead>
                 <tr>
                     <th>Client</th>

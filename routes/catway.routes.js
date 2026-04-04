@@ -1,7 +1,7 @@
 const express =require('express');
 const router = express.Router();
 
-const catwayController = require ('../controllers/catway.Controller');
+const catwayController = require ('../controllers/API/catway.Controller');
 const auth = require('../middlewares/auth.middleware');
 
 //Appel de la fonction du controller qui affiche la liste des catway
