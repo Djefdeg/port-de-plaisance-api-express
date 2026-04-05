@@ -1,6 +1,7 @@
 const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
+const session = require('express-session');
 
 // Importation des routes
 const indexRoutes = require('./routes/index.routes');
@@ -15,9 +16,18 @@ app.set('views', './views');
 
 app.use(express.static('public'))
 
+app.use(express.urlencoded({ extended: true }));
+
 // middleware
 app.use(cors());
 app.use(express.json());
+
+// 🔥 SESSION ICI
+app.use(session({
+  secret: 'secret-key',
+  resave: false,
+  saveUninitialized: false
+}));
 
 // routes
 app.use('/catways', catwayRoutes);

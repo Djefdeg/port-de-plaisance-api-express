@@ -7,15 +7,6 @@
   margin-bottom: 20px;
 }
 
-#message {
-  color: red;
-  background-color: blanchedalmond;
-  width: 75%;
-  /* height: 20px; */
-  margin: auto;
-  text-align: center;
-}
-
 body {
   display: flex;
   flex-direction: column;
@@ -120,14 +111,7 @@ fieldset label, legend{
 h2{
   text-align: center;
 }
-.alert {
-  background-color:blanchedalmond;
-  width: 90%;
-  margin: auto;
-  margin-bottom: 30px;
-  border-radius: 1em;
-  padding : 10px;
-}
+
 table, th, td {
   border: 1px solid;
   border-collapse: collapse;

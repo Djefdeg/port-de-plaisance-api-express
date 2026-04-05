@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 //const auth = require('../middlewares/auth.middleware');
+const authSession = require('../middlewares/authSession.middleware');
 
 const homeController = require ('../controllers/pages/home.Controller');
 const dashboardController = require ('../controllers/pages/dashboard.Controller');
@@ -9,7 +10,8 @@ const dashboardController = require ('../controllers/pages/dashboard.Controller'
 router.get('/', homeController.home);
 
 //Route vers la page tableau de bord
-router.get('/dashboard', dashboardController.dashboard);
+router.post('/login', homeController.login);
+router.get('/dashboard',authSession, dashboardController.dashboard);
 
 
 

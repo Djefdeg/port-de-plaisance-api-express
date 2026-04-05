@@ -12,19 +12,13 @@
 
         <fieldset>
             <legend>UTILISATEUR CONNECTÉ</legend>
-            <label for="name">Nom d'utilisateur:</label> <span id="name">DOE</span><br>
-            <label for="email">E-mail :</label> <span id="email"></span><br>
+            <label for="name">Nom d'utilisateur:</label> <span id="name"><%= user.userName %></span><br>
+            <label for="email">E-mail :</label> <span id="email"><%= user.email %></span><br>
             <label for="date">Date :</label> <span id="date">30/03/2026</span>
         </fieldset>
       
         <h2>RÉSERVATIONS EN COURS</h2>
-        <p class="alert">
-            ⚠️ Le filtre sur les dates du controller getCurrentReservation ne fonctionne pas, je fais donc un filtrage
-             directement dans le frontend qui lui est fonctionnel. On charge toutes les réservations puis on filtre.
-             L'idéal est de filtrer directement dans le backend dans son controller mais cela ne fonctionne pas 
-             pour une raison non identifiée. Vu que le nombre de réservations est petit cela n'aura pas d'effet sur 
-             le temps d'exécution du code. Procédure moins optimisée mais fonctionnelle.
-        </p>
+        
         <table>
             <thead>
                 <tr>
@@ -34,10 +28,16 @@
                     <th>Fin</th>
                 </tr>
             </thead>
-                <tbody id="reservations-body">
+                <tbody id="reservationTable">
+                    <!-- dashboard.js remplira ce tableau -->
             </tbody>
         </table>
     </main>
+      <script>
+        // Injection des données envoyées par le controller
+        const reservationsData =  JSON.parse('<%- JSON.stringify(reservations) %>') ;
+        // const currentUser =  JSON.stringify(user);
+    </script>
     <script src="/js/dashboard.js"></script>
 </body>
 
