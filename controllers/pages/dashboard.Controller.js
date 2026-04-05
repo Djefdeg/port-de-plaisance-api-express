@@ -8,7 +8,8 @@ exports.dashboard = async (req, res) => {
         // On envoie les données à la vue EJS
         res.render('pages/dashboard', {
             user: req.session.user,   // info utilisateur connecté
-            reservations              // toutes les réservations
+            reservations,              // toutes les réservations
+            today: new Date()
         });
     } catch (err) {
         console.error(err);

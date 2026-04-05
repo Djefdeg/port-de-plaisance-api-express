@@ -3,13 +3,63 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Catways</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
-    <%- include('../partials/header') %>
+<body class="catways">
+   <%- include('../partials/header') %>
+
     <main>
-        <h1>Ici page des catways</h1>
+        <h1 class="catway_title">Gestion des Catways</h1>
+        <!-- 🟦 FORMULAIRE -->
+        <form id="catwayForm" action="/catways" method="POST">
+            <div class="catway_btn">
+                <button type="submit" name="action" id="addBtn" value="create">Ajouter</button>
+                <button type="submit" name="action" id="updateBtn" value="update">Modifier</button>
+                <button type="submit" name="action" id="deleteBtn" value="delete">Supprimer</button>
+                <button type="reset">Réinitialiser</button>
+            </div>
+            <div class="catway_field">
+                <input type="number" id="catwayNumber" name="catwayNumber" placeholder="Numéro" required>
+                <select name="catwayType" required>
+                    <option value="short">Short</option>
+                    <option value="long">Long</option>
+                </select>
+                <!-- <input type="text" id="catwayType" name="catwayType" placeholder="Type"> -->
+                <input type="text" id="catwayState" name="catwayState" placeholder="État">
+                
+                <% if (errorMessage) { %>
+                    <div class="alert"><%= errorMessage %></div>
+                <% } %>
+            </div>
+        </form>
+
+        <!-- 🟩 TABLEAU -->
+        <h2>Liste des Catways</h2>
+        <div class="catway_table_container">
+             <table class="catway_table">
+                <thead>
+                    <tr>
+                        <th>Numéro</th>
+                        <th>Type</th>
+                        <th>État</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% catways.forEach(catway => { %>
+                        <tr>
+                            <td><%= catway.catwayNumber %></td>
+                            <td><%= catway.catwayType %></td>
+                            <td><%= catway.catwayState %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
     </main>
-    
+    <script>
+        const catwaysData = JSON.parse('<%- JSON.stringify(catways) %>');
+    </script>
+    <script src="/js/catway.js"></script>
 </body>
 </html>

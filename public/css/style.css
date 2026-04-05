@@ -1,23 +1,38 @@
 
 
 .presentation {
-  width: 75%;
+  width: 90%;
   margin: auto;
   text-align: center;
   margin-bottom: 20px;
+  
+}
+p.presentation {
+  font-size: 1.1rem; 
+  line-height: 1.4;
+  color: #000; 
 }
 
-body {
-  display: flex;
-  flex-direction: column;
+.background {
+  position: relative;
+  background-image: url('/img/catway_img.jpeg'); /* ton image */
+  background-size: cover;
+  background-position: center;
   min-height: 100vh;
+}
 
-  flex: 1; /* Le contenu occupe tout l'espace restant */
-  background-image: url('../img/catway_img.jpeg');
-  background-repeat: no-repeat; /* Empêche la répétition */
-  background-position: center; /* Centre l'image */
-  background-size: cover; /* Couvre tout l'espace sans déformer */
-  background-attachment: fixed; /* L'image reste fixe au scroll (optionnel) */
+.background::before {
+  content: "";
+  position: absolute;
+  top: 0; left: 0;
+  width: 100%; height: 100%;
+  background-color: rgba(255, 255, 255, 0.6); /* voile blanc 20% */
+  z-index: 1;
+}
+
+body * {
+  position: relative;
+  z-index: 2; /* texte au-dessus du voile */
 }
 
 form {
@@ -26,7 +41,7 @@ form {
   width: 400px;
   /* Le contour du formulaire */
   padding: 1em;
-  border: 1px solid #ccc;
+  border: 2px solid wheat;
   border-radius: 1em;
   background-color:lightsteelblue;
 }
@@ -56,6 +71,7 @@ form input {
 button{
     width: 300px;
     height: 30px;
+    border-color: wheat;
 }
 
 footer{
@@ -106,7 +122,7 @@ background-color:darkcyan;
 fieldset label, legend{
   font-weight: bold;
 }
-/* Style du tableau */
+/* Style du tableau de bord*/
 
 h2{
   text-align: center;
@@ -128,4 +144,49 @@ th {
 td{
   background-color:whitesmoke;
   padding-left: 5px;
+}
+
+/* Style de la page Catways*/
+
+.catway_title {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+}
+
+#catwayForm {
+  margin: 10px auto;
+  width: 50%;
+  display:flex;
+}
+.catways .catway_btn{
+  width: 25%;
+}
+.catways button {
+  width: 90%;
+}
+.catways input, select{
+  width: 95%;
+  margin: 4px auto;
+  height: 23px;
+}
+.alert{
+  color: red;
+}
+
+.catway_table_container {
+    margin: auto;
+    max-height: 400px; /* hauteur visible */
+    overflow-y: auto;  /* scroll vertical */
+    background-color:gainsboro;
+    width:95%;
+}
+.catway_table{
+  width: 99%;
+}
+
+.catway_table thead {
+    position: sticky;
+    top: 0;
+    z-index: 10;                /* pour rester au-dessus des lignes */
 }

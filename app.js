@@ -29,10 +29,11 @@ app.use(session({
   saveUninitialized: false
 }));
 
-// routes
-app.use('/catways', catwayRoutes);
-app.use('/catways', reservationRoutes);
-app.use('/users',userRoutes);
+// routes API
+app.use('/api/catways', catwayRoutes);
+app.use('/api/catways', reservationRoutes);
+app.use('/api/users',userRoutes);
+//Routes pages EJS
 app.use('/', indexRoutes);
 
 module.exports = app;

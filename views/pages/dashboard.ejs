@@ -14,7 +14,7 @@
             <legend>UTILISATEUR CONNECTÉ</legend>
             <label for="name">Nom d'utilisateur:</label> <span id="name"><%= user.userName %></span><br>
             <label for="email">E-mail :</label> <span id="email"><%= user.email %></span><br>
-            <label for="date">Date :</label> <span id="date">30/03/2026</span>
+            <label for="date">Date :</label> <span id="date"><%= today.toLocaleDateString('fr-FR') %></span>
         </fieldset>
       
         <h2>RÉSERVATIONS EN COURS</h2>
