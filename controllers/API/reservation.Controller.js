@@ -1,7 +1,11 @@
 const Catway = require('../../models/catway.model');
 const Reservation = require ('../../models/reservation.model');
 
-//Afficher la liste des réservations (tous catways confondus)) : GET /catways/all
+/**
+ * Afficher la liste des réservations (tous catways confondus)) : GET /catways/all
+ * @param {Object} req
+ * @param {Object} res
+ */
 exports.getAllReservationsGlobal = async(req,res) =>{
      try{
           const reservations = await Reservation.find();
@@ -12,8 +16,12 @@ exports.getAllReservationsGlobal = async(req,res) =>{
      }
 };
 
-//Afficher la liste des réservations en cours (tous catways confondus)) : GET /reservations/current
-//Ce controller ne fonctionne pas car son filtre de dates ne fonctionne pas
+/**
+ * Afficher la liste des réservations en cours (tous catways confondus)) : GET /reservations/current
+ * Ce controller ne fonctionne pas car son filtre de dates ne fonctionne pas
+ * @param {Object} req
+ * @param {Object} res
+ */
 exports.getCurrentReservations = async (req, res) => {
     try {
         const today = new Date();
@@ -30,7 +38,11 @@ exports.getCurrentReservations = async (req, res) => {
     }
 };
 
-//Afficher la liste des réservations avec catwayNumber donné : GET /catways/:catwayNumber/reservations
+/**
+ * Afficher la liste des réservations avec catwayNumber donné : GET /catways/:catwayNumber/reservations
+ * @param {Object} req
+ * @param {Object} res
+ */
 exports.getAllReservations = async (req, res)=>{
    try {
         const catwayNumber=Number(req.params.catwayNumber);
@@ -47,7 +59,11 @@ exports.getAllReservations = async (req, res)=>{
    }
 };
 
-//récupérer une réservation précise : GET /catways/:catwayNumber/reservations/:reservationId
+/**
+ * récupérer une réservation précise : GET /catways/:catwayNumber/reservations/:reservationId
+ * @param {Object} req
+ * @param {Object} res
+ */
 exports.getGivenReservation = async(req,res)=>{
      try {
           const catwayNumber=Number(req.params.catwayNumber);
@@ -63,7 +79,11 @@ exports.getGivenReservation = async(req,res)=>{
      }
 };
 
-//Créer une nouvelle réservation : POST /catways/:catwayNumber/reservations
+/**
+ * Créer une nouvelle réservation : POST /catways/:catwayNumber/reservations
+ * @param {Object} req
+ * @param {Object} res
+ */
 exports.createReservation = async(req,res)=>{
      const reservationBuffer = {
           catwayNumber: Number(req.params.catwayNumber),
@@ -109,7 +129,11 @@ exports.createReservation = async(req,res)=>{
      }
 };
 
-//Modifier les champs d'une réservation donnée : PUT /catways/:catwayNumber/reservations/:reservationId
+/**
+ * Modifier les champs d'une réservation donnée : PUT /catways/:catwayNumber/reservations/:reservationId
+ * @param {Object} req
+ * @param {Object} res
+ */
 exports.updateGivenReservation = async (req, res)=>{
      const reservationBuffer = {
           catwayNumber: Number(req.params.catwayNumber),
@@ -161,7 +185,11 @@ exports.updateGivenReservation = async (req, res)=>{
      }     
 };
 
-//Supprimer une réservation donnée : DELETE /catways/:catwayNumber/reservations/:reservationId
+/**
+ * Supprimer une réservation donnée : DELETE /catways/:catwayNumber/reservations/:reservationId
+ * @param {Object} req
+ * @param {Object} res
+ */
 exports.deleteGivenReservation = async (req,res) =>{
      try {
           const catwayNumber=Number(req.params.catwayNumber);

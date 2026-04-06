@@ -1,7 +1,11 @@
 const User = require('../../models/user.model');
 const bcrypt = require('bcrypt');
 
-
+/**
+ * Affiche la liste des utilisateurs
+ * @param {Object} req
+ * @param {Object} res
+ */
 exports.getAllUsers = async (req, res) => {
     try {
         const users = await User.find();
@@ -17,6 +21,11 @@ exports.getAllUsers = async (req, res) => {
         res.status(500).send('Erreur serveur');
     }
 };
+/**
+ * Gère les actions CRUD pour les utilisateurs
+ * @param {Object} req
+ * @param {Object} res
+ */
 
 exports.handleUser = async (req, res) => {
     const { action, userId, userName, email, password } = req.body;

@@ -1,6 +1,11 @@
 const jwt = require('jsonwebtoken');
 const blacklist = require('./tokenBlacklist');
 
+/**
+ * Vérifier si le token est authentique
+ * @param {Object} req
+ * @param {Object} res
+ */
 module.exports = (req, res, next) => {
     try {
         // Récupérer le token dans le header
@@ -17,7 +22,7 @@ module.exports = (req, res, next) => {
             return res.status(401).json({ message: 'token_invalid' });
         }
 
-        // 🔴 Vérifier blacklist
+        // Vérifier blacklist
         if (blacklist.has(token)) {
             return res.status(401).json({ message: 'token_revoked' });
         }

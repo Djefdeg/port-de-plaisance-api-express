@@ -1,6 +1,10 @@
 const mongoose = require('mongoose');
 
-//Schéma pour une réservation
+/**
+ * Schéma pour une reservation
+ * @param {Object} req
+ * @param {Object} res
+ */
 
 const reservationSchema = new mongoose.Schema({
     catwayNumber: {type : Number, required: true, min: 0, index:true },

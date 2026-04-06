@@ -1,5 +1,10 @@
 const Catway = require('../../models/catway.model');
 
+/**
+ * Affiche la liste des catways
+ * @param {Object} req
+ * @param {Object} res
+ */
 exports.getAllCatways = async (req, res) => {
     try {
         const catways = await Catway.find();
@@ -16,6 +21,11 @@ exports.getAllCatways = async (req, res) => {
     }
 };
 
+/**
+ * Gère les actions CRUD pour les catways
+ * @param {Object} req
+ * @param {Object} res
+ */
 exports.handleCatway = async (req, res) => {
     const { action, catwayNumber, catwayType, catwayState } = req.body;
 

@@ -1,5 +1,10 @@
 const Reservation = require('../../models/reservation.model');
 
+/**
+ * Affiche la liste des réservations
+ * @param {Object} req
+ * @param {Object} res
+ */
 exports.getAllReservations = async (req, res) => {
     try {
         const reservations = await Reservation.find();
@@ -16,6 +21,11 @@ exports.getAllReservations = async (req, res) => {
     }
 };
 
+/**
+ * Gère les actions CRUD pour les reservationss
+ * @param {Object} req
+ * @param {Object} res
+ */
 exports.handleReservation = async (req, res) => {
     const { action, reservationId, catwayNumber, clientName, boatName, startDate, endDate } = req.body;
 

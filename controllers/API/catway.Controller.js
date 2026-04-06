@@ -1,6 +1,10 @@
 const Catway = require ('../../models/catway.model');
 
-//Afficher la liste des catway
+/**
+ * Affiche la liste des catways
+ * @param {Object} req
+ * @param {Object} res
+ */
 exports.getAllCatways = async (req, res)=>{
    try {
         const catways = await Catway.find();
@@ -11,7 +15,11 @@ exports.getAllCatways = async (req, res)=>{
    }
 };
 
-//Afficher un catway déterminé
+/**
+ * Affiche un catway déterminé
+ * @param {Object} req
+ * @param {Object} res
+ */
 exports.getGivenCatway = async (req, res)=>{
    const catwayNumber=Number(req.params.catwayNumber);
    try {
@@ -25,7 +33,11 @@ exports.getGivenCatway = async (req, res)=>{
    }
 };
 
-//Créer un nouveau catway
+/**
+ * Créer un nouveau catway
+ * @param {Object} req
+ * @param {Object} res
+ */
 exports.createCatway = async (req, res)=>{
    let catwayBuffer = {
      catwayNumber:req.body.catwayNumber,
@@ -44,7 +56,11 @@ exports.createCatway = async (req, res)=>{
    }
 };
 
-//Modifier les champs d'un catway donné
+/**
+ * Modifier les champs d'un catway donné
+ * @param {Object} req
+ * @param {Object} res
+ */
 exports.updateGivenCatway = async (req, res)=>{
    const catwayNumber=Number(req.params.catwayNumber);
    
@@ -67,7 +83,11 @@ exports.updateGivenCatway = async (req, res)=>{
    }
 };
 
-//Supprimer un catway donné
+/**
+ * Supprimer un catway donné
+ * @param {Object} req
+ * @param {Object} res
+ */
 exports.deleteGivenCatway = async (req, res)=>{
    const catwayNumber=Number(req.params.catwayNumber);
    

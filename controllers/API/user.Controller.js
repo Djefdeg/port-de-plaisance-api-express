@@ -3,7 +3,11 @@ const bcrypt = require ('bcrypt');
 const jwt = require ('jsonwebtoken');
 const blacklist = require('../../middlewares/tokenBlacklist');
 
-//Afficher la liste des utilisateurs
+/**
+ * Afficher la liste des utilisateurs
+ * @param {Object} req
+ * @param {Object} res
+ */
 exports.getAllUsers = async (req,res) => {
     try {
         const users = await User.find();
@@ -14,7 +18,11 @@ exports.getAllUsers = async (req,res) => {
     }
 };
 
-//Afficher un user déterminé par son email.
+/**
+ * Afficher un user déterminé par son email.
+ * @param {Object} req
+ * @param {Object} res
+ */
 exports.getGivenUser = async(req,res)=>{
     const email = req.params.email;
     try{
@@ -29,7 +37,11 @@ exports.getGivenUser = async(req,res)=>{
     }
 };
 
-//Créer un nouvel utilisateur
+/**
+ * Créer un nouvel utilisateur
+ * @param {Object} req
+ * @param {Object} res
+ */
 exports.createUser = async(req,res) => {
    
     let userBuffer ={
@@ -49,7 +61,11 @@ exports.createUser = async(req,res) => {
     }
 };
 
-//Modifier les champs d'un utilisateur donné par son email
+/**
+ * Modifier les champs d'un utilisateur donné par son email
+ * @param {Object} req
+ * @param {Object} res
+ */
 exports.updateGivenUser = async (req,res)=>{
     const email = req.params.email;
     let userBuffer ={
@@ -75,7 +91,11 @@ exports.updateGivenUser = async (req,res)=>{
     }
 };
 
-//Supprimer un utilisateur donné par son email
+/**
+ * Supprimer un utilisateur donné par son email
+ * @param {Object} req
+ * @param {Object} res
+ */
 exports.deleteGivenUser = async (req,res)=>{
     const email=req.params.email;
     try{
@@ -90,7 +110,11 @@ exports.deleteGivenUser = async (req,res)=>{
     }
 };
 
-//Authentification du nom d'utilisateur et mot de passe
+/**
+ * Authentification du nom d'utilisateur et mot de passe
+ * @param {Object} req
+ * @param {Object} res
+ */
 exports.login = async (req,res) => {
     
 try {

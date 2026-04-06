@@ -1,5 +1,10 @@
 const Reservation = require('../../models/reservation.model');
 
+/**
+ * Affiche la liste des reservations
+ * @param {Object} req
+ * @param {Object} res
+ */
 exports.dashboard = async (req, res) => {
     try {
         // On récupère toutes les réservations

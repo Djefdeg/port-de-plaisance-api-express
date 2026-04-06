@@ -1,7 +1,11 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-//Schema pour un utilisateur
+/**
+ * Schéma pour un user
+ * @param {Object} req
+ * @param {Object} res
+ */
 const userSchema = new mongoose.Schema({
     userName:{type : String, trim:true, required:true, unique:true},
     email: {type : String, trim:true, lowercase:true, required:true, unique:true, 
@@ -10,12 +14,11 @@ const userSchema = new mongoose.Schema({
 },
 {timestamps : true}
 );
-
+//On hashe le mot de passe uniquement s'il a été modifié (créé implique modifié aussi)
 userSchema.pre('save', async function() {
     if (!this.isModified('password')) {
         return;
     }
-
     const hashedPassword = await bcrypt.hash(this.password, 10);
     this.password = hashedPassword;
 });
