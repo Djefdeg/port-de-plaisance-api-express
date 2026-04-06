@@ -191,7 +191,7 @@ td{
     z-index: 10;                /* pour rester au-dessus des lignes */
 }
 
-/* Style de la page Catways*/
+/* Style de la page Reservations*/
 
 .reservation_title {
   width: 90%;
@@ -237,4 +237,51 @@ td{
 
 .reservations th {
   width: 15%;
+}
+
+/* Style de la page Utilisateurs*/
+.user_title {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+}
+
+#userForm {
+  margin: 10px auto;
+  width: 50%;
+  display:flex;
+}
+
+.users .user_btn{
+  width: 25%;
+}
+.users button {
+  width: 90%;
+  margin: 4px auto;
+}
+.users input{
+  width: 95%;
+  margin: 1px auto;
+  height: 23px;
+}
+
+.user_table_container {
+    margin: auto;
+    max-height: 400px; /* hauteur visible */
+    overflow-y: auto;  /* scroll vertical */
+    background-color:gainsboro;
+    width:95%;
+}
+.user_table{
+  width: 99%;
+}
+
+.user_table thead {
+    position: sticky;
+    top: 0;
+    z-index: 10;                /* pour rester au-dessus des lignes */
+}
+
+.users th {
+  width: 33%;
 }

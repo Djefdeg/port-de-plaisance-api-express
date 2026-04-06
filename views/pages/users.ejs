@@ -4,11 +4,64 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Users</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="users">
      <%- include('../partials/header') %>
     <main>
-        <h1>Ici page des utilisateurs</h1>
+        <h1 class="user_title">Gestion des Catways</h1>
+        <!-- 🟦 FORMULAIRE -->
+        <form id="userForm" action="/users" method="POST">
+            <div class="user_btn">
+                <button type="submit" name="action" id="addBtn" value="create">Ajouter</button>
+                <button type="submit" name="action" id="updateBtn" value="update">Modifier</button>
+                <button type="submit" name="action" id="deleteBtn" value="delete">Supprimer</button>
+                <button type="reset">Réinitialiser</button>
+            </div>
+            <div class="user_field">
+                <input type="text" id="userId" name="userId" placeholder="userId">
+                <input type="text" id="userName" name="userName" placeholder="Nom utilisateur" required>
+                <input type="email" id="email" name="email" placeholder="Email" required>
+                <input type="password" id="password" name="password" placeholder="Mot de passe" minlength="8">
+                
+                <% if (errorMessage) { %>
+                    <div class="alert"><%= errorMessage %></div>
+                <% } %>
+                <p class="info">
+                    <strong>Instructions :</strong><br>
+                    - Pour ajouter : remplir tous les champs sauf userId puis cliquer sur "Ajouter"<br>
+                    - Pour modifier : saisir tous les champs puis cliquer sur "Modifier"<br>
+                    - Pour supprimer : saisir uniquement l'ID puis cliquer sur "Supprimer"
+                </p>
+            </div>
+        </form>
+
+        <!-- 🟩 TABLEAU -->
+        <h2>Liste des Utilisateurs</h2>
+        <div class="user_table_container">
+             <table class="user_table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nom d'utilisateur</th>
+                        <th>Email</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% users.forEach(catway => { %>
+                        <tr>
+                            <td><%= user._id %></td>
+                            <td><%= user.userName %></td>
+                            <td><%= user.email %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
     </main>
+    <script>
+        const usersData = JSON.parse('<%- JSON.stringify(users) %>');
+    </script>
+    <script src="/js/user.js"></script>
 </body>
 </html>

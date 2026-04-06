@@ -6,6 +6,7 @@ const homeController = require ('../controllers/pages/home.Controller');
 const dashboardController = require ('../controllers/pages/dashboard.Controller');
 const catwayController = require('../controllers/pages/catway.controller');
 const reservationController = require('../controllers/pages/reservation.controller');
+const userController = require('../controllers/pages/user.controller');
 
 
 //Route de la page home pour logger
@@ -30,6 +31,9 @@ router.get('/reservations', authSession, reservationController.getAllReservation
 
 router.post('/reservations', authSession, reservationController.handleReservation);
 
+//routes de user
+router.get('/users', authSession, userController.getAllUsers);
 
+router.post('/users', authSession, userController.handleUser);
 
 module.exports = router;
