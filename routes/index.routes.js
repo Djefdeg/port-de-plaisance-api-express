@@ -5,6 +5,7 @@ const authSession = require('../middlewares/authSession.middleware');
 const homeController = require ('../controllers/pages/home.Controller');
 const dashboardController = require ('../controllers/pages/dashboard.Controller');
 const catwayController = require('../controllers/pages/catway.controller');
+const reservationController = require('../controllers/pages/reservation.controller');
 
 
 //Route de la page home pour logger
@@ -23,6 +24,11 @@ router.get('/logout', homeController.logout);
 router.get('/catways', authSession, catwayController.getAllCatways);
 
 router.post('/catways', authSession, catwayController.handleCatway);
+
+//routes de reservation
+router.get('/reservations', authSession, reservationController.getAllReservations);
+
+router.post('/reservations', authSession, reservationController.handleReservation);
 
 
 

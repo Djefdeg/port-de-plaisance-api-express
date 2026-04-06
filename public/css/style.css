@@ -190,3 +190,51 @@ td{
     top: 0;
     z-index: 10;                /* pour rester au-dessus des lignes */
 }
+
+/* Style de la page Catways*/
+
+.reservation_title {
+  width: 90%;
+  margin: auto;
+  text-align: center;
+}
+
+#reservationForm {
+  margin: 10px auto;
+  width: 50%;
+  display:flex;
+}
+
+.reservations .reservation_btn{
+  width: 25%;
+}
+.reservations button {
+  width: 90%;
+  margin: 4px auto;
+}
+.reservations input{
+  width: 95%;
+  margin: 1px auto;
+  height: 23px;
+}
+
+.reservation_table_container {
+    margin: auto;
+    max-height: 400px; /* hauteur visible */
+    overflow-y: auto;  /* scroll vertical */
+    background-color:gainsboro;
+    width:95%;
+}
+.reservation_table{
+  width: 99%;
+}
+
+.reservation_table thead {
+    position: sticky;
+    top: 0;
+    z-index: 10;                /* pour rester au-dessus des lignes */
+}
+
+.reservations th {
+  width: 15%;
+}

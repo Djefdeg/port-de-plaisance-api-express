@@ -32,6 +32,7 @@ app.use(session({
 // routes API
 app.use('/api/catways', catwayRoutes);
 app.use('/api/catways', reservationRoutes);
+//app.use('/api/reservations', reservationRoutes);
 app.use('/api/users',userRoutes);
 //Routes pages EJS
 app.use('/', indexRoutes);

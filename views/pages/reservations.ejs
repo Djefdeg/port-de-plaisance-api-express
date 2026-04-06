@@ -4,11 +4,68 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Reservations</title>
+    <link rel="stylesheet" href="css/style.css">
 </head>
-<body>
+<body class="reservations">
      <%- include('../partials/header') %>
     <main>
-        <h1>Ici page des réservations</h1>
+        <h1 class="reservation_title">Gestion des Réservations</h1>
+        <!-- 🟦 FORMULAIRE -->
+        <form id="reservationForm" action="/reservations" method="POST">
+            <div class="reservation_btn">
+                <button type="submit" name="action" id="addBtn" value="create">Ajouter</button>
+                <button type="submit" name="action" id="updateBtn" value="update">Modifier</button>
+                <button type="submit" name="action" id="deleteBtn" value="delete">Supprimer</button>
+                <button type="reset">Réinitialiser</button>
+            </div>
+            <div class="reservation_field">
+                <input type="text" id="reservationId" name="reservationId" placeholder="reservationId">
+                <input type="number" id="catwayNumber" name="catwayNumber" placeholder="Numéro du catway">
+                <input type="text" id="clientName" name="clientName" placeholder="Plaisancier">
+                <input type="text" id="boatName" name="boatName" placeholder="Nom du bateau">
+                <input type="date" id="startDate" name="startDate" placeholder="Date début">
+                <input type="date" id="endtDate" name="endDate" placeholder="Date fin">
+                
+                <% if (errorMessage) { %>
+                    <div class="alert"><%= errorMessage %></div>
+                <% } %>
+            </div>
+        </form>
+
+        <!-- 🟩 TABLEAU -->
+        <h2>Liste des Reservations</h2>
+        <div class="resrvation_table_container">
+            <table class="reservation_table">
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Numéro Catway</th>
+                        <th>Plaisancier</th>
+                        <th>Nom du bateau</th>
+                        <th>Date début</th>
+                        <th>Date fin</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <% reservations.forEach(reservation => { %>
+                        <tr>
+                            <td><%= reservation._id %></td>
+                            <td><%= reservation.catwayNumber %></td>
+                            <td><%= reservation.clientName %></td>
+                            <td><%= reservation.boatName %></td>
+                            <td><%= reservation.startDate %></td>
+                            <td><%= reservation.endDate %></td>
+                        </tr>
+                    <% }) %>
+                </tbody>
+            </table>
+        </div>
     </main>
+    <script>
+        //const reservationsData =<%- JSON.stringify(reservations) %>;
+        // Convertir les données envoyées par le controller en objet JS
+            const reservationsData = JSON.parse('<%- JSON.stringify(reservations) %>');
+    </script>
+    <script src="/js/reservation.js"></script>
 </body>
 </html>
