@@ -24,3 +24,20 @@ GET /catways/:catwayNumber/reservations/:reservationId
 POST /catways/:catwayNumber/reservations  
 PUT /catways/:catwayNumber/reservations/:reservationId  
 DELETE /catways/:catwayNumber/reservations/:reservationId  
+
+GET /users  
+GET /users/:email  
+POST /users  
+PATCH /users/:email  
+DELETE /users/:email 
+
+
+## Accès à l'application
+
+Compte de test :
+
+Email: eric@email.com  
+Password: 12345678
+
+## Accès à swagger
+(/api-docs)
