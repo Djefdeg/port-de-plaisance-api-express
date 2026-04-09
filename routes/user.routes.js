@@ -36,6 +36,92 @@ const auth = require('../middlewares/auth.middleware');
 //Appel de la fonction du controller qui crée un nouvel utilisateur
 router.post('/', userController.createUser);
 
+/**
+ * @swagger
+ * /api/users/login:
+ *   post:
+ *     summary: Connexion utilisateur
+ *     tags: [Users]
+ *     requestBody:
+ *       required: true
+ *       content:
+ *         application/json:
+ *           schema:
+ *             type: object
+ *             required:
+ *               - email
+ *               - password
+ *             properties:
+ *               email:
+ *                 type: string
+ *                 example: test@test.com
+ *               password:
+ *                 type: string
+ *                 example: 12345678
+ *     responses:
+ *       200:
+ *         description: Connexion réussie avec token et infos utilisateur
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: login_succees
+ *                 token:
+ *                   type: string
+ *                   example: eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9...
+ *                 user:
+ *                   type: object
+ *                   properties:
+ *                     userName:
+ *                       type: string
+ *                       example: test
+ *                     email:
+ *                       type: string
+ *                       example: test@test.com
+ *       400:
+ *         description: Champs manquants
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: Missing_required_field
+ *       401:
+ *         description: Mot de passe invalide
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: invalid-credentials
+ *       404:
+ *         description: Utilisateur non trouvé
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: user_not_found
+ *       500:
+ *         description: Erreur serveur
+ *         content:
+ *           application/json:
+ *             schema:
+ *               type: object
+ *               properties:
+ *                 message:
+ *                   type: string
+ *                   example: internal_server_error
+ */
 //Route d'authentification du nom d'utilisateur et mot de passe
 router.post('/login', userController.login);
 
@@ -59,10 +145,13 @@ router.post('/login', userController.login);
  *                 properties:
  *                   userName:
  *                     type: string
+ *                     example: test
  *                   email:
  *                     type: string
+ *                     example: test@test.com
  *                   password:
  *                     type: string
+ *                     example: $2b$10$hash...
  *       401:
  *         description: Non authentifié / Token invalide
  */
